@@ -1,0 +1,41 @@
+plugins {
+    id 'multiloader-common'
+    id 'net.neoforged.moddev.legacyforge'
+}
+
+legacyForge {
+    mcpVersion = minecraft_version
+    if (file("src/main/resources/META-INF/accesstransformer.cfg").exists()) {
+        accessTransformers = ["src/main/resources/META-INF/accesstransformer.cfg"]
+    }
+    parchment {
+        minecraftVersion = parchment_minecraft
+        mappingsVersion = parchment_version
+    }
+}
+
+dependencies {
+    compileOnly group: 'org.spongepowered', name: 'mixin', version: '0.8.5'
+    compileOnly "curse.maven:carry-on-274259:4882500"
+    compileOnly "org.projectlombok:lombok:${lombok_version}"
+    annotationProcessor "org.projectlombok:lombok:${lombok_version}"
+    compileOnly "org.apache.commons:commons-lang3:${commons_lang3_version}"
+    compileOnly "com.google.guava:guava:${guava_version}"
+    implementation group: 'com.google.code.findbugs', name: 'jsr305', version: '3.0.1'
+}
+
+configurations {
+    commonJava {
+        canBeResolved = false
+        canBeConsumed = true
+    }
+    commonResources {
+        canBeResolved = false
+        canBeConsumed = true
+    }
+}
+
+artifacts {
+    commonJava sourceSets.main.java.sourceDirectories.singleFile
+    commonResources sourceSets.main.resources.sourceDirectories.singleFile
+}

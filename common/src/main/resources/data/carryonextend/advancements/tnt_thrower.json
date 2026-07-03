@@ -1,0 +1,28 @@
+{
+  "display": {
+    "icon": {
+      "item": "minecraft:tnt"
+    },
+    "title": {
+      "translate": "advancement.carryonextend.tnt_thrower.title"
+    },
+    "description": {
+      "translate": "advancement.carryonextend.tnt_thrower.description"
+    },
+    "background": "minecraft:textures/gui/advancements/backgrounds/stone.png",
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "throw_tnt": {
+      "trigger": "carryonextend:tnt_throw"
+    }
+  },
+  "requirements": [
+    [
+      "throw_tnt"
+    ]
+  ]
+}

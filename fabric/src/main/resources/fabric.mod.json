@@ -1,0 +1,40 @@
+{
+    "schemaVersion": 1,
+    "id": "carryonextend",
+    "version": "${version}",
+    "name": "${mod_name}",
+    "description": "${description}",
+    "authors": [
+        "${mod_author}"
+    ],
+    "contact": {
+        "homepage": "",
+        "sources": ""
+    },
+    "license": "${license}",
+    "icon": "assets/carryonextend/${mod_id}.png",
+    "environment": "*",
+    "entrypoints": {
+        "main": [
+            "com.lirxowo.carryonextend.CarryOnExtend"
+        ],
+        "client": [
+            "com.lirxowo.carryonextend.CarryOnExtendClient"
+        ]
+    },
+    "mixins": [
+        "${mod_id}.mixins.json",
+        "${mod_id}.fabric.mixins.json"
+    ],
+    "depends": {
+        "fabricloader": ">=0.14",
+        "fabric": "*",
+        "carryon": "*",
+        "minecraft": "${minecraft_version}",
+        "java": ">=17"
+    },
+    "suggests": {
+        "another-mod": "*"
+    }
+}
+  

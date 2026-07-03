@@ -1,0 +1,40 @@
+plugins {
+    id 'fabric-loom' version '1.9-SNAPSHOT' apply(false)
+    id 'net.neoforged.moddev.legacyforge' version '2.0.77' apply(false)
+}
+
+tasks.register('buildAll') {
+    group = 'build'
+    description = 'Builds Fabric and Forge jars, then copies the latest artifacts into the root libs directory.'
+
+    dependsOn ':fabric:build', ':forge:build'
+
+    doLast {
+        def outputDir = layout.projectDirectory.dir('libs').asFile
+        outputDir.mkdirs()
+        delete fileTree(outputDir) {
+            include "${mod_id}-*.jar"
+        }
+
+        ['fabric', 'forge'].each { moduleName ->
+            def module = project(":${moduleName}")
+            def candidates = fileTree(module.layout.buildDirectory.dir('libs')) {
+                include '*.jar'
+                exclude '*-sources.jar'
+                exclude '*-javadoc.jar'
+                exclude '*-dev.jar'
+                exclude '*-dev-shadow.jar'
+            }.files
+
+            if (candidates.empty) {
+                throw new GradleException("No build artifact found for :${moduleName}")
+            }
+
+            def latestArtifact = candidates.max { it.lastModified() }
+            copy {
+                from latestArtifact
+                into outputDir
+            }
+        }
+    }
+}
