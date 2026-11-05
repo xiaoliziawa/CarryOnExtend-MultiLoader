@@ -17,6 +17,7 @@ legacyForge {
 dependencies {
     compileOnly group: 'org.spongepowered', name: 'mixin', version: '0.8.5'
     compileOnly "curse.maven:carry-on-274259:4882500"
+    compileOnly "curse.maven:lootr-fabric-615106:${lootr_fabric_file_id}"
     compileOnly "org.projectlombok:lombok:${lombok_version}"
     annotationProcessor "org.projectlombok:lombok:${lombok_version}"
     compileOnly "org.apache.commons:commons-lang3:${commons_lang3_version}"

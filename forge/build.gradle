@@ -61,6 +61,7 @@ dependencies {
     compileOnly "org.apache.commons:commons-lang3:${commons_lang3_version}"
     compileOnly "com.google.guava:guava:${guava_version}"
     compileOnly name: carryOnForgeDevModule
+    compileOnly "curse.maven:lootr-361276:${lootr_forge_file_id}"
     annotationProcessor("org.spongepowered:mixin:0.8.5-SNAPSHOT:processor")
 }
 
